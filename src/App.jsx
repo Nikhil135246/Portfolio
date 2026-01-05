@@ -5,7 +5,7 @@ const App = () => {
   return (
     // very first step empty fragment
     <>
-    <Hero />
+    <Hero/>
     </>
   )
 }

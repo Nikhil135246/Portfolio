@@ -1,5 +1,7 @@
 import React from "react";
 import { words } from "../constants";
+import Button from "../components/Button";
+import HeroExperience from "../components/HeroModels/HeroExperience";
 
 
 
@@ -19,9 +21,9 @@ const Hero = () => {
                 Shaping
                 <span className="slide">
                   <span className="wrapper">
-                    {words.map((word) => (
+                    {words.map((word,idx) => (
                       <span
-                        key={word.text}
+                        key={idx}
                         className="flex items-center md:gap-3 gap-1 pb-2"
                       >
                         <img
@@ -38,10 +40,20 @@ const Hero = () => {
               <h1>into Real Projects</h1>
               <h1>that Deliver Results</h1>
             </div>
+            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">Hi, I'm Nikhil. I love pushing myself as a developer, building experiences across Web and Android.</p>
+            <Button 
+              className="md:w-80 md:h-16 w-60 h-12"
+              id ='button'
+              text ='See my Work'/>
           </div>
         </header>
 
         {/* RIGHT: 3D MODEL */}
+        <figure>
+          <div className="hero-3d-layout">
+            <HeroExperience />
+          </div>
+        </figure>
       </div>
     </section>
   );
