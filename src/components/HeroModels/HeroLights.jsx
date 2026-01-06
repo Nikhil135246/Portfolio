@@ -2,13 +2,14 @@ import { RectAreaLight } from "three";
 const HeroLights = () => {
   return (
     <>
-      <spotLight
+      {/* <spotLight
         position={[3, 6, 6]}
         angle={0.15}
         intensity={100}
-        penumbra={0.2} /* light softness edge  */
+        penumbra={0.2}
+        light softness edge 
         color="white"
-      />
+      /> */}
       <spotLight
         position={[4, 5, 4]}
         angle={0.3}
