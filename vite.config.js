@@ -6,4 +6,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  preview: {
+    allowedHosts: ['.onrender.com']
+  }
 })

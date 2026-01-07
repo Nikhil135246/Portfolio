@@ -5,6 +5,7 @@ import HeroExperience from "../components/HeroModels/HeroExperience";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import AnimatedCounter from "../components/AnimatedCounter";
 
 const Hero = () => {
     const [show3D, setShow3D] = useState(false);
@@ -13,7 +14,7 @@ const Hero = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow3D(true);
-    }, 1000); // 1-second delay (adjust based on when your animation finishes/stabilizes)
+    }, 900); // 1-second delay (adjust based on when your animation finishes/stabilizes)
 
     return () => clearTimeout(timer);
   }, []);
@@ -114,6 +115,13 @@ const Hero = () => {
           </div>
         </figure>
       </div>
+
+             {/* Animated Counter */}
+
+             <AnimatedCounter />
+
+
+
     </section>
   );
 };
