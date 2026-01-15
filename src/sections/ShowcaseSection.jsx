@@ -47,7 +47,7 @@ const AppShowcase = () => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper">
+          <div ref={rydeRef} className="first-project-wrapper p-2">
             <div className="image-wrapper">
               <img src="/images/project1.png" alt="Ryde App Interface" />
             </div>
@@ -63,23 +63,50 @@ const AppShowcase = () => {
             </div>
           </div>
 
-          <div className="project-list-wrapper overflow-hidden">
-            <div className="project" ref={libraryRef}>
-              <div className="image-wrapper bg-[#FFEFDB]">
-                <img
-                  src="/images/project2.png"
-                  alt="Library Management Platform"
-                />
+          <div className="project-list-wrapper overflow-hidden p-2 gap-2  ">
+            <div
+              className="project holographic-card"
+              ref={libraryRef}
+              style={{ "--holo-color": "#d770fa" }} // Blue/Cyan
+            >
+              <div className="image-wrapper bg-[#]">
+                {/* Project:1 */}
+                <a
+                  href="https://gsap-mackbook-landing-1.onrender.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/images/project2.png"
+                    alt="Mackbook Pro Landing Page"
+                    className="cursor-pointer transition-transform hover:scale-110"
+                  />
+                </a>
               </div>
-              <h2>The Library Management Platform</h2>
+              <h2>Mackbook Pro Landing Page</h2>
             </div>
 
-            <div className="project" ref={ycDirectoryRef}>
-              <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/project3.png" alt="YC Directory App" />
+            <div
+              className="project holographic-card"
+              ref={ycDirectoryRef}
+              style={{ "--holo-color": "#25f7bf" }} // Pink/Magenta
+            >
+              <div className="image-wrapper bg-[#]">
+                <a
+                  href="https://project-parallax-website.onrender.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/images/image.png"
+                    alt="Parallax Website"
+                    className="cursor-pointer transition-transform hover:scale-110"
+                  />
+                </a>
               </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
+              <h2>Feel the tropical vibes with our Parallax Website</h2>
             </div>
+
           </div>
         </div>
       </div>

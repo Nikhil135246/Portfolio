@@ -189,7 +189,7 @@ section {
       @apply flex md:flex-row flex-col xl:flex-col gap-10 xl:w-[40%];
 
       .image-wrapper {
-        @apply xl:h-[37vh] md:h-52 lg:h-72 h-64 relative rounded-xl xl:px-5 2xl:px-12 py-0;
+        @apply xl:h-[35vh] md:h-52 lg:h-72 h-64 relative rounded-xl xl:px-5 2xl:px-12 py-0;
       }
 
       img {
@@ -470,3 +470,58 @@ section {
 .card:hover::before {
   opacity: 1;
 }
+/* Holographic Card Effect */
+.holographic-card {
+  /* Default color if not provided */
+  --holo-color: #00ffff;
+  
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: #111;
+  padding: 1rem;
+  transition: all 0.5s ease;
+}
+
+.holographic-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  /* Use the variable with some transparency for the gradient */
+  background: linear-gradient(
+    0deg, 
+    transparent, 
+    transparent 30%, 
+    color-mix(in srgb, var(--holo-color), transparent 70%)
+  );
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.holographic-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--holo-color), transparent 50%);
+  z-index: 20;
+}
+
+.holographic-card:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(100%);
+}
+
+.holographic-card h2 {
+  position: relative;
+  z-index: 20;
+  transition: color 0.3s ease;
+}
+
+.holographic-card:hover h2 {
+  color: var(--holo-color);
+}
+

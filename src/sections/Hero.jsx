@@ -66,8 +66,8 @@ const Hero = () => {
 
       <div className="hero-layout">
         {/* LEFT: HERO CONTENT */}
-        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
-          <div className="flex flex-col gap-7 ">
+        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5 ">
+          <div className="flex flex-col gap-6 ">
             <div className="hero-text">
               <h1>
                 Shaping
@@ -93,7 +93,7 @@ const Hero = () => {
               <h1>that Deliver Results</h1>
             </div>
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Hi, I'm Nikhil. I love pushing myself as a developer, building
+              Hi, I'm Nikhil. I love pushing myself as a developer, building<br />
               experiences across Web and Android.
             </p>
             <Button
