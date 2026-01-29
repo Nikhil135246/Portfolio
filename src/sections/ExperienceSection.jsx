@@ -117,7 +117,7 @@ const Experience = () => {
                       <div className="gradient-line w-1 h-full" />
                     </div>
                     <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                      <div className="timeline-logo">
+                      <div className="timeline-logo flex-shrink-0 w-16 h-16 md:w-20 md:h-20 flex items-center justify-centerflex-shrink-0 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
                         <img src={card.logoPath} alt="logo" />
                       </div>
                       <div>
