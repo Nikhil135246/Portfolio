@@ -6,7 +6,7 @@ const Button = ({ text, className, id }) => {
         e.preventDefault(); // Prevent default anchor behavior
 
         // Get the target element by ID 'counter'
-        const target = document.getElementById("counter");
+        const target = document.getElementById("work");
 
         // If target exists and id prop is provided
         if (target && id) {
