@@ -118,7 +118,7 @@ const Hero = () => {
 
              {/* Animated Counter */}
 
-             <AnimatedCounter />
+             {/* <AnimatedCounter /> */}
 
 
 
