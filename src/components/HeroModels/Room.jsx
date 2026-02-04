@@ -7,7 +7,7 @@ import { useRef, useState, useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
-import { MeshPhongMaterial, MeshStandardMaterial } from "three";
+import { MeshPhongMaterial, MeshStandardMaterial,Layers } from "three";
 
 export function Room(props) {
   const { nodes, materials } = useGLTF("/models/optimized-room.glb");
@@ -76,15 +76,13 @@ useEffect(() => {
   return (
     <group {...props} dispose={null}>
       {/* <ambientLight intensity={0.05} /> */}
-      {isLightOn && (
-        <spotLight
-          position={[8, 12, 2]}
-          angle={0.15}
-          intensity={150}
-          penumbra={0.1} /* light softness edge  */
-          color="white"
-        />
-      )}
+      <spotLight
+        position={[8, 12, 2]}
+        angle={0.15}
+        intensity={isLightOn ? 150 : 1} // Toggle intensity instead of rendering
+        penumbra={0.1} /* light softness edge  */
+        color="white"
+      />
       <EffectComposer>
         <SelectiveBloom
           selection={screensRef}
