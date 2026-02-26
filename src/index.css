@@ -327,6 +327,37 @@ section {
     .socials {
       @apply flex items-center justify-center gap-5;
 
+      .social-icon-wrapper {
+        @apply relative flex items-center justify-center size-12 md:size-14 rounded-xl transition-all duration-300;
+        
+        /* Bloom glow effect on hover */
+        &::before {
+          content: '';
+          @apply absolute rounded-xl opacity-0 transition-all duration-500 ease-out;
+          inset: -10px;
+          background: radial-gradient(circle, var(--glow-color) 0%, transparent 60%);
+          filter: blur(10px);
+          transform: scale(1);
+        }
+
+        &:hover::before {
+          opacity: 0.6;
+          transform: scale(1.2);
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+
+        img {
+          @apply relative transition-all duration-300;
+        }
+
+        &:hover img {
+          filter: brightness(1.2) drop-shadow(0 0 8px var(--glow-color));
+        }
+      }
+
       .icon {
         @apply border border-black-50 bg-black-100 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
       }
