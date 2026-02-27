@@ -14,7 +14,8 @@ const Footer = () => {
     <footer className='footer'>
       <div className='footer-container -mb-8'>
         <div className='flex flex-col justify-center'>
-          <a href="/">Visit my blog</a>
+          <a href="https://leetcode.com/u/nikmaxwell/" target="_blank"
+                  rel="noopener noreferrer">Visit my leetcode</a>
         </div>
         <div className='socials'>
           {socialImgs.map((img) => (
