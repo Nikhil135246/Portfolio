@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import TitleHeader from "../components/TitleHeader";
 import ContactExperience from "../components/Models/contact/ContactExperience";
 import StarCanvas from "../components/Models/contact/Star";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -47,7 +48,9 @@ const Contact = () => {
   return (
     <section id="contact" className="flex-center section-padding relative">
       <Toaster position="top-center" reverseOrder={false} />
-      <StarCanvas />
+      <ErrorBoundary>
+        <StarCanvas />
+      </ErrorBoundary>
 
       <div className="w-full h-full md:px-10 px-5 z-10">
         <TitleHeader
@@ -120,7 +123,9 @@ const Contact = () => {
           </div>
           <div className="xl:col-span-7 min-h-96">
             <div className="w-full h-full relative hover:cursor-grab rounded-3xl overflow-hidden">
-              <ContactExperience />
+              <ErrorBoundary>
+                <ContactExperience />
+              </ErrorBoundary>
             </div>
           </div>
         </div>

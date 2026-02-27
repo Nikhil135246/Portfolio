@@ -5,9 +5,8 @@ Command: npx gltfjsx@6.5.3 optimized-room.glb
 
 import { useRef, useState, useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
-import { BlendFunction } from "postprocessing";
-import { MeshPhongMaterial, MeshStandardMaterial,Layers } from "three";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { MeshPhongMaterial, MeshStandardMaterial } from "three";
 
 export function Room(props) {
   const { nodes, materials } = useGLTF("/models/optimized-room.glb");
@@ -84,14 +83,11 @@ useEffect(() => {
         color="white"
       />
       <EffectComposer>
-        <SelectiveBloom
-          selection={screensRef}
-          intensity={1} // Strength of the bloom
-          luminanceThreshold={0.3} // Minimum luminance needed
-          luminanceSmoothing={0.9} // Smooth transition
-          blendFunction={BlendFunction.ADD} // How it blends
+        <Bloom 
+          intensity={1.5}
+          luminanceThreshold={0.2}
+          luminanceSmoothing={0.9}
         />
-
       </EffectComposer>
       <mesh
         geometry={nodes._________6_blinn1_0.geometry}
@@ -108,7 +104,6 @@ useEffect(() => {
         ref={screensRef}
         geometry={nodes.emis_lambert1_0.geometry}
         material={materials.lambert1}
-        
       />
       <mesh
         geometry={nodes.handls_blinn1_0.geometry}

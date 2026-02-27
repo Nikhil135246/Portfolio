@@ -1,6 +1,6 @@
 import { OrbitControls, useGLTF, Grid, useHelper } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
 
 
 const Earth = () => {
@@ -33,7 +33,8 @@ const Earth = () => {
 const ContactExperience = () => {
   return (
     <Canvas shadows camera={{ position: [0, 3, 7], fov: 45 }}>
-      {/* <ambientLight intensity={0.5} color="#fff4e6" />
+      <Suspense fallback={null}>
+        {/* <ambientLight intensity={0.5} color="#fff4e6" />
 
       <directionalLight position={[5, 5, 3]} intensity={2.5} color="#ffd9b3" />
 
@@ -66,6 +67,7 @@ const ContactExperience = () => {
         
         
       </group>
+      </Suspense>
     </Canvas>
   );
 };
