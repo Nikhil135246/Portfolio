@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { words } from "../constants";
 import Button from "../components/Button";
 import HeroExperience from "../components/HeroModels/HeroExperience";
@@ -8,18 +8,7 @@ import gsap from "gsap";
 import AnimatedCounter from "../components/AnimatedCounter";
 
 const Hero = () => {
-    const [show3D, setShow3D] = useState(false);
-    const roomRef = useRef();
-  // Delay the 3D scene initialization to let GSAP run smoothly first
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShow3D(true);
-    }, 900); // 1-second delay (adjust based on when your animation finishes/stabilizes)
-
-    return () => clearTimeout(timer);
-  }, []);
-
-     // 1. Text Animation
+  // Text Animation
   useGSAP(() => {
     gsap.fromTo(
       ".hero-text h1",
@@ -39,25 +28,6 @@ const Hero = () => {
       }
     );
   });
-
-    // 2. Room Animation (triggers when show3D becomes true)
-  useGSAP(() => {
-    if (show3D && roomRef.current) {
-      gsap.fromTo(
-        roomRef.current,
-        {
-          x: 50, // Starts 100px to the right
-          opacity: 0, // Starts invisible
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 2.5,
-          ease: "power1.inOut", // Smooth deceleration
-        }
-      );
-    }
-  }, [show3D]);
   return (
     <section id="hero" className="relative overflow-hidden">
       <div className="absolute top-0 left-0 z-10">
@@ -106,12 +76,10 @@ const Hero = () => {
 
         {/* RIGHT: 3D MODEL */}
         <figure>
-          <div ref={roomRef} className="hero-3d-layout">
-            {show3D && (
-               <div className="w-full h-full pointer-events-auto">
-                 <HeroExperience />
-               </div>
-             )}
+          <div className="hero-3d-layout">
+            <div className="w-full h-full pointer-events-auto">
+              <HeroExperience />
+            </div>
           </div>
         </figure>
       </div>

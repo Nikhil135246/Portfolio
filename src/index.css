@@ -342,7 +342,7 @@ section {
 
         &:hover::before {
           opacity: 0.6;
-          transform: scale(1.2);
+          transform: scale(1);
         }
 
         &:hover {
