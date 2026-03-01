@@ -8,18 +8,26 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import { MeshPhongMaterial, MeshStandardMaterial,Layers } from "three";
+import { useLoadingContext } from "../../context/LoadingContext";
 
 export function Room(props) {
   const { nodes, materials } = useGLTF("/models/optimized-room.glb");
   const screensRef = useRef();
   const [isLightOn, setIsLightOn] = useState(false);
+  const [hasFlickered, setHasFlickered] = useState(false);
   const matcapTexture = useTexture("/images/textures/mat1.png");
+  
+  // Get loading state from context
+  const { isLoaded } = useLoadingContext();
 
 useEffect(() => {
-  // Simulating a fluorescent light flicker effect on component mount
+  // Only start flicker animation after loading is complete and hasn't already run
+  if (!isLoaded || hasFlickered) return;
+  
+  // Simulating a fluorescent light flicker effect
   const flickerDurations = [100, 300, 400, 600, 800];
   const flickerTimeouts = [];
-  const initialDelay = 900; // Delay before flicker starts (in ms)
+  const initialDelay = 300; // Reduced delay since loading already provides anticipation
 
   const triggerFlicker = () => {
     flickerDurations.forEach((delay) => {
@@ -32,6 +40,7 @@ useEffect(() => {
     // Ensure specific final state is set to ON safely after the sequence
     const finalTimeout = setTimeout(() => {
       setIsLightOn(true);
+      setHasFlickered(true); // Mark as completed
     }, Math.max(...flickerDurations, 0) + 200); // 200ms after last flicker
     flickerTimeouts.push(finalTimeout);
   };
@@ -43,7 +52,7 @@ useEffect(() => {
   return () => {
     flickerTimeouts.forEach(clearTimeout);
   };
-}, []);
+}, [isLoaded, hasFlickered]);
 
   const curtainMaterial = new MeshPhongMaterial({
     color: "#d90429",
