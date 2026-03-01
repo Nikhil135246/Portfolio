@@ -55,12 +55,17 @@ const Loader = ({ onLoadComplete, minimumLoadTime = 3000, maxLoadTime = 10000 })
     // Models are loaded when progress is 100 and no longer actively loading
     const modelsLoaded = modelProgress >= 100 && !isLoading;
     
+    let completionTimeout;
     if ((isMinTimeComplete && modelsLoaded) || isMaxTimeReached) {
       // Small delay for smooth transition
-      setTimeout(() => {
+      completionTimeout = setTimeout(() => {
         onLoadComplete?.();
       }, 300);
     }
+    
+    return () => {
+      if (completionTimeout) clearTimeout(completionTimeout);
+    };
   }, [isMinTimeComplete, isMaxTimeReached, modelProgress, isLoading, onLoadComplete]);
 
   return (
