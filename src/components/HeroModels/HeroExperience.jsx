@@ -5,6 +5,8 @@ import { useRef, useEffect } from "react";
 import { Room } from "./Room";
 import HeroLights from "./HeroLights";
 import Particles from "./Particles";
+import { useLoadingContext } from "../../context/LoadingContext";
+import gsap from "gsap";
 
 /**
  * Camera controls with auto-return feature
@@ -60,20 +62,47 @@ const CameraControls = () => {
 const HeroExperience = () => {
   const isTablet = useMediaQuery({ query: "max-width: 1024px" });
   const isMobile = useMediaQuery({ query: "max-width: 768px" });
+  const containerRef = useRef(null);
+  const { isLoaded } = useLoadingContext();
+  
+  // Fade-in animation when loading completes
+  useEffect(() => {
+    if (isLoaded && containerRef.current) {
+      gsap.fromTo(
+        containerRef.current,
+        { 
+          opacity: 0,
+          
+        },
+        { 
+          opacity: 1,
+         
+          duration: 1.5,
+          ease: "power2.out",
+        }
+      );
+    }
+  }, [isLoaded]);
   
   return (
-    <Canvas camera={{ position: [0, 0, 12], fov: 40 }}>
-      <CameraControls />
-      <Particles count={100} />
-      <group 
-        scale={isMobile ? 0.7 : 1} 
-        position={[0, -3.6, 0]}
-        rotation={[0, -Math.PI / 3.8, 0]}
-      >
-        <HeroLights />
-        <Room />
-      </group>
-    </Canvas>
+    <div 
+      ref={containerRef} 
+      className="w-full h-full"
+      style={{ opacity: 0 }} // Start invisible
+    >
+      <Canvas camera={{ position: [0, 0, 12], fov: 40 }}>
+        <CameraControls />
+        <Particles count={100} />
+        <group 
+          scale={isMobile ? 0.7 : 1} 
+          position={[0, -3.6, 0]}
+          rotation={[0, -Math.PI / 3.8, 0]}
+        >
+          <HeroLights />
+          <Room />
+        </group>
+      </Canvas>
+    </div>
   );
 };
 
