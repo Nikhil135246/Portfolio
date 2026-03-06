@@ -7,39 +7,35 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AppShowcase = () => {
   const sectionRef = useRef(null);
-  const rydeRef = useRef(null);
-  const libraryRef = useRef(null);
-  const ycDirectoryRef = useRef(null);
+  const sashRef = useRef(null);
+  const mackbookRef = useRef(null);
+  const parallaxRef = useRef(null);
 
-  useGSAP(() => {
-    // Animation for the main section
-    gsap.fromTo(
-      sectionRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.5 }
-    );
+    useGSAP(() => {
+      // Main section animation removed for debugging
 
     // Animations for each app showcase
-    const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
+    const cards = [sashRef.current, mackbookRef.current, parallaxRef.current];
 
     cards.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          delay: 0.3 * (index + 1),
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=100",
+        gsap.fromTo(
+          card,
+          {
+            y: 50,
+            opacity: 0,
           },
-        }
-      );
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            delay: 0.2*index, // Stagger the animations
+            ease: 'linear',
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom -=200",
+            },
+          }
+        );
     });
   }, []);
 
@@ -47,7 +43,7 @@ const AppShowcase = () => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper p-2">
+          <div ref={sashRef} className="first-project-wrapper p-2">
             <div className="image-wrapper">
               <img src="/images/project1.2.png" alt="Ryde App Interface" />
             </div>
@@ -65,7 +61,7 @@ const AppShowcase = () => {
           <div className="project-list-wrapper overflow-hidden p-2 gap-2  ">
             <div
               className="project holographic-card"
-              ref={libraryRef}
+              ref={mackbookRef}
               style={{ "--holo-color": "#d770fa" }} // Blue/Cyan
             >
               <div className="image-wrapper bg-[#]">
@@ -87,7 +83,7 @@ const AppShowcase = () => {
 
             <div
               className="project holographic-card"
-              ref={ycDirectoryRef}
+              ref={parallaxRef}
               style={{ "--holo-color": "#25f7bf" }} // Pink/Magenta
             >
               <div className="image-wrapper bg-[#]">
