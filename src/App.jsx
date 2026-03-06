@@ -26,20 +26,7 @@ const App = () => {
 
   return (
     <LoadingContext.Provider value={loadingContextValue}>
-      {/* LCP Background - always visible for fast LCP */}
-      <div 
-        className="fixed top-0 left-0 z-0 pointer-events-none"
-        aria-hidden="true"
-      >
-        <img 
-          src="/images/bg.png" 
-          alt="" 
-          fetchPriority="high"
-          decoding="async"
-        />
-      </div>
-
-      {/* Loader - shows while loading */}
+      {/* Loader - shows on top while loading */}
       {isLoading && (
         <Loader 
           onLoadComplete={handleLoadComplete} 
@@ -47,14 +34,13 @@ const App = () => {
         />
       )}
       
-      {/* Main Content - uses opacity for smooth transition while allowing paint */}
+      {/* Main Content - rendered underneath loader for LCP paint */}
       <div 
         style={{ 
           opacity: isLoading ? 0 : 1,
           transition: 'opacity 0.3s ease-in-out'
         }}
-      >
-        <NavBar />
+      >        <NavBar />
         <Hero />
         <ShowcaseSection />
         <LogoSection />
