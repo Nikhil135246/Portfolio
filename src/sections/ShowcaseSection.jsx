@@ -73,7 +73,7 @@ const AppShowcase = () => {
               <div className="image-wrapper bg-[#]">
                 {/* Project:1 */}
                 <a
-                  href="https://gsap-mackbook-landing-1.onrender.com/"
+                  href="https://gsap-mackbook-landing-2.onrender.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
