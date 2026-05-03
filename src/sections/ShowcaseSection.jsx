@@ -47,7 +47,13 @@ const AppShowcase = () => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper p-2">
+          <a
+            ref={rydeRef}
+            className="first-project-wrapper p-2"
+            href="https://github.com/Nikhil135246/SASH-Social-And-Sharing-Hub"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <div className="image-wrapper">
               <img src="/images/project1.2.png" alt="Ryde App Interface" />
             </div>
@@ -60,7 +66,7 @@ const AppShowcase = () => {
                 user-friendly experience.
               </p>
             </div>
-          </div>
+          </a>
 
           <div className="project-list-wrapper overflow-hidden p-2 gap-2  ">
             <div
