@@ -26,17 +26,21 @@ const App = () => {
 
   return (
     <LoadingContext.Provider value={loadingContextValue}>
-      {/* Loader - shows while loading */}
+      {/* Loader - shows on top while loading */}
       {isLoading && (
         <Loader 
           onLoadComplete={handleLoadComplete} 
-          minimumLoadTime={3000} // 3 seconds minimum
+          minimumLoadTime={1000} // Reduced for better LCP
         />
       )}
       
-      {/* Main Content - always rendered to allow 3D models to load in background */}
-      <div style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
-        <NavBar />
+      {/* Main Content - rendered underneath loader for LCP paint */}
+      <div 
+        style={{ 
+          opacity: isLoading ? 0 : 1,
+          transition: 'opacity 0.3s ease-in-out'
+        }}
+      >        <NavBar />
         <Hero />
         <ShowcaseSection />
         <LogoSection />
